@@ -30,7 +30,7 @@ jobs:
          run: |
            git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
            cd ultroid
-           docker run --privileged --rm -i --env-file .env ubuntu:20.04
+           docker build -f Dockerfile
        - name: Loop workflow
          continue-on-error: true
          run: |
