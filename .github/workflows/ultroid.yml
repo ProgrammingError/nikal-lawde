@@ -30,11 +30,7 @@ jobs:
          continue-on-error: true
          run: |
            expect -c " 
-           spawn git clone ${{ secrets.CREDS }}.git ultroid
-           expect \"Username\"        
-           send \"${{ secrets.GHUSER }}\r\"
-           expect \"Password\"        
-           send \"${{ secrets.GHPASS }}\r\"
+           git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
            set timeout -1
            catch wait result
            interact"
@@ -48,7 +44,7 @@ jobs:
        - name: Loop workflow
          continue-on-error: true
          run: |
-              git clone https://${{ secrets.GHTOKEN }}@github.com/ProgrammingError/ultroid-wf loop
+              git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
               cd loop
               echo "1" >> loop.txt
               git add loop.txt
