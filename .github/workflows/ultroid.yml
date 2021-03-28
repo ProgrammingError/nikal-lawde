@@ -18,6 +18,8 @@ jobs:
        - name: cloning repo
          continue-on-error: true
          run: |
+           sudo apt-get update
+           sudo apt-get upgrade
            sudo apt-get install -y git
            sudo apt-get install --reinstall openssl libssl1.1 libssl-dev libssl-doc
            git config --global user.email ${GitHubMail}
