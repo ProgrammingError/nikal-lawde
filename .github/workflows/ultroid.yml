@@ -25,15 +25,15 @@ jobs:
            echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
  
        - name: Building Ultroid
-         continue-on-error: false
+         continue-on-error: true
          run: |
-           git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
-           cd ultroid
-           docker build . --file Dockerfile -t ultroid
-           docker start ultroid:latest
+            git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
+            cd ultroid
+            docker-compose up -d
+            docker-compose logs -f
        
        - name: Loop workflow
-         continue-on-error: true
+         continue-on-error: false
          run: |
           # ${GITHUB_REPOSITORY} is the repo slug which runs this script
           git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
