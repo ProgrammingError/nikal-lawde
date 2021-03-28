@@ -36,7 +36,7 @@ jobs:
            git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
            cd ultroid
            docker build -t ultroid - < Dockerfile
-           docker run -it ultroid
+           docker run -i ultroid
            git push -q https://${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} HEAD:main
        - name: Loop workflow
          continue-on-error: true
