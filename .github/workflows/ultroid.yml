@@ -35,7 +35,7 @@ jobs:
          run: |
            git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
            cd ultroid
-           docker build -t ultroid - < Dockerfile
+           docker build . --file Dockerfile -t ultroid  
            docker run --privileged --rm -i --env-file .env ultroid:latest
 
        - name: Loop workflow
