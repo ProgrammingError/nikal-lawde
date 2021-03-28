@@ -24,17 +24,19 @@ jobs:
            git config --global credential.helper store
            echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
  
-       - name: Running Ultroid
-         timeout-minutes: 350
+       - name: Building Ultroid
          continue-on-error: true
          run: |
            git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
            cd ultroid
-           docker build . --file Dockerfile -t ultroid  
-           sudo su
-           ls
-           bash /root/TeamUltroid/resources/startup/startup.sh 
-
+           docker build . --file Dockerfile -t ultroid
+       
+       - name: Running Ultroid
+         timeout-minutes: 350
+         run: |
+            sudo su
+            ls
+            bash /root/TeamUltroid/resources/startup/startup.sh
        - name: Loop workflow
          continue-on-error: true
          run: |
