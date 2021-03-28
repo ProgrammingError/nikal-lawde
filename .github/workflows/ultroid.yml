@@ -25,11 +25,12 @@ jobs:
            echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
  
        - name: Building Ultroid
-         continue-on-error: true
+         continue-on-error: false
          run: |
            git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
            cd ultroid
            docker build . --file Dockerfile -t ultroid
+           docker start ultroid:latest
        
        - name: Loop workflow
          continue-on-error: true
