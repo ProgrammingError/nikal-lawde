@@ -25,6 +25,7 @@ jobs:
            echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
  
        - name: Building Ultroid
+         timeout-minutes: 355
          continue-on-error: false
          run: |
             git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
