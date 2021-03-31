@@ -2,7 +2,10 @@
 
 name: setting up environment
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
     
 env:
   GitHubMail: "error@notavailable.live"
