@@ -29,7 +29,7 @@ jobs:
  
        - name: Building Ultroid
          timeout-minutes: 350
-         continue-on-error: false
+         continue-on-error: true
          run: |
             git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.CREDS }} ultroid
             cd ultroid
@@ -37,7 +37,7 @@ jobs:
             docker-compose logs -f
        
        - name: Loop workflow
-         continue-on-error: false
+         continue-on-error: true
          run: |
           # ${GITHUB_REPOSITORY} is the repo slug which runs this script
           git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
